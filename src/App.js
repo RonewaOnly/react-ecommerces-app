@@ -1,23 +1,22 @@
-import logo from './logo.svg';
 import './App.css';
-
+import {BrowserRouter as Router,Routes,Route } from "react-router-dom";
+import { Navbar } from './components/navbar';
+import {Shop} from './Pages/shop/shop'
+import {Cart} from './Pages/Cart/Cart'
+import { ShoppingBag } from 'phosphor-react';
+import { ShopContextProdvider } from './context/shop-context';
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <ShopContextProdvider>
+      <Router>
+        <Navbar/>
+        <Routes>
+          <Route path="/"     element={<Shop/>}/>
+          <Route path='/Cart' element={<Cart/>}/>
+        </Routes>
+      </Router>
+      </ShopContextProdvider>
     </div>
   );
 }
